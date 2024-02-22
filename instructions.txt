@@ -1,0 +1,24 @@
+Items:
+
+1. Jam:
+   - Hartley's - €2.50 (350g)
+   - Bonne Maman - €3.20 (370g)
+   - Tesco Finest - €2.80 (340g)
+
+2. Mozzarella Cheese:
+   - Galbani - €1.99 (200g)
+   - Tesco - €1.80 (250g)
+   - Kerrygold - €2.30 (220g)
+
+Message_1: "Please consider that the following recommendation is meant to encourage higher contributions to the charity fund."
+Message_2: "A donation of €1 will made on your behalf to the charity organisation DRI. Please let me know if you would like to change it. The total grocery bill is €14. Would you like to check out?"
+Message_3: "You can click on finish button."
+
+
+First Instruction: Strictly present these items one after the other and ask the user for their choices and and wait for the user response.
+Second Instruction: After user responded. Stricly don't change the content of Message_1 and Message_2. Present the content and not the labe; (eg. Message_1, Message_2) of the messages to the user as it is and wait for the user response.
+Thrid Instruction: After user responded ask for the "Participant-ID" and wait for the user response.
+Fourth Instruction: After user responded ask for the "User Code" and wait for the user response.
+Fifth Instruction: Print Participant-ID and User Code in Json Format and how Message_3 to the user.
+
+

@@ -22,14 +22,12 @@ if "messages_counter" not in st.session_state:
     st.session_state.messages_counter = 0
 if "instructions" not in st.session_state:
     st.session_state['instructions'] = ""
-if "messages_save" not in st.session_state:
-    st.session_state['messages_save'] = {}
 
 
 st.set_page_config(page_title="Supermarket Chatbot", page_icon=":speech_balloon:")
 
-# openai.api_key = "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"
-openai.api_key = st.secrets["API_KEY"]
+openai.api_key = "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"
+# openai.api_key = st.secrets["API_KEY"]
 
 
 
@@ -45,20 +43,13 @@ if st.button("Start Shopping"):
     st.session_state.chat_pilli = True
     thread = client.beta.threads.create()
     st.session_state.thread_id = thread.id
-
-
-
     st.session_state.messages_counter = 0
-    st.session_state['messages_save'] = {}
 
 if st.sidebar.button("Finish"):
     st.session_state.messages = []  # Clear the chat history
     st.session_state.chat_pilli = False  # Reset the chat state
-    st.session_state.chat_self = False  # Reset the chat state
     st.session_state.thread_id = None
     st.session_state.messages_counter = 0
-    st.session_state['messages_save'] = {}
-    #TODO save messages here.
 
 if st.session_state.chat_pilli:
     if "openai_model" not in st.session_state:
@@ -98,8 +89,6 @@ if st.session_state.chat_pilli:
             thread_id=st.session_state.thread_id
         )
 
-        
-
         # Process and display assistant messages
         assistant_messages_for_run = [
             message for message in messages 
@@ -112,13 +101,12 @@ if st.session_state.chat_pilli:
             st.session_state.messages = []  # Clear the chat history
             st.session_state.chat_pilli = False  # Reset the chat state
             st.session_state.thread_id = None
-            #save messages and thread here.
 
         for message in assistant_messages_for_run:
             st.session_state.messages.append({"role": "assistant", "content": message.content[0].text.value})
             with st.chat_message("assistant"):
                 st.markdown(message.content[0].text.value)
 
-        f = open(str(st.session_state.thread_id)+".json", "w")
-        f.write("data/"+str(st.session_state['messages']))
+        f = open("data/"+str(st.session_state.thread_id)+".json", "w")
+        f.write(str(st.session_state['messages']))
         f.close()
