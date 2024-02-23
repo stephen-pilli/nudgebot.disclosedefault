@@ -26,8 +26,7 @@ if "instructions" not in st.session_state:
 
 st.set_page_config(page_title="Supermarket Chatbot", page_icon=":speech_balloon:")
 
-openai.api_key = "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"
-# openai.api_key = st.secrets["API_KEY"]
+openai.api_key = st.secrets["API_KEY"]
 
 
 
